@@ -4,6 +4,7 @@ import java.util.Dictionary;
 import java.util.Properties;
 
 import com.mattstine.fluffbox.dao.SpeakerDao;
+import com.mattstine.fluffbox.dao.KioskDao;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
@@ -28,6 +29,11 @@ public final class DaoActivator
 
         // Register our example test implementation in the OSGi test registry
         bc.registerService( SpeakerDao.class.getName(), new SpeakerDaoImpl(), props );
+
+        System.out.println( "REGISTER com.mattstine.fluffbox.dao.KioskDao" );
+
+        // Register our example test implementation in the OSGi test registry
+        bc.registerService( KioskDao.class.getName(), new KioskDaoImpl(), props );
     }
 
     /**

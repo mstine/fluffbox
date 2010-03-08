@@ -31,6 +31,15 @@ public class Kiosk {
     private String state;
     private String zipCode;
 
+    public Kiosk(Long id, String businessName, String address, String city, String state, String zipCode) {
+        this.id = id;
+        this.businessName = businessName;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+    }
+
     public Long getId() {
         return id;
     }

@@ -20,24 +20,13 @@
  * THE SOFTWARE.
  */
 
-package com.mattstine.fluffbox.dao.internal;
+package com.mattstine.fluffbox.dao;
 
-import com.mattstine.fluffbox.dao.SpeakerDao;
+import com.mattstine.fluffbox.model.Kiosk;
 import com.mattstine.fluffbox.model.Speaker;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class SpeakerDaoImpl implements SpeakerDao {
-    public List<Speaker> findAll() {
-        List<Speaker> speakers = new ArrayList<Speaker>();
-        speakers.add(new Speaker(1L, "Matt", "Stine", "OSGi Head"));
-        speakers.add(new Speaker(2L, "Neal", "Ford", "Thoughtworker"));
-        speakers.add(new Speaker(3L, "Ken", "Sipe", "All-around cool dude"));
-        return speakers;
-    }
-
-    public Speaker get(Long id) {
-        return new Speaker(1L, "Matt", "Stine", "OSGi Head");
-    }
+public interface KioskDao {
+    List<Kiosk> findKiosksWhereAvailable(Speaker speaker);
 }

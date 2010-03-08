@@ -20,24 +20,37 @@
  * THE SOFTWARE.
  */
 
-package com.mattstine.fluffbox.dao.internal;
+package com.mattstine.fluffbox.service.internal;
 
-import com.mattstine.fluffbox.dao.SpeakerDao;
+import com.mattstine.fluffbox.service.KioskManager;
+import com.mattstine.fluffbox.model.Kiosk;
 import com.mattstine.fluffbox.model.Speaker;
+import com.mattstine.fluffbox.dao.KioskDao;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class SpeakerDaoImpl implements SpeakerDao {
-    public List<Speaker> findAll() {
-        List<Speaker> speakers = new ArrayList<Speaker>();
-        speakers.add(new Speaker(1L, "Matt", "Stine", "OSGi Head"));
-        speakers.add(new Speaker(2L, "Neal", "Ford", "Thoughtworker"));
-        speakers.add(new Speaker(3L, "Ken", "Sipe", "All-around cool dude"));
-        return speakers;
+import org.osgi.util.tracker.ServiceTracker;
+
+/**
+ * Created by IntelliJ IDEA.
+ * User: mstine
+ * Date: Mar 8, 2010
+ * Time: 11:57:13 AM
+ * To change this template use File | Settings | File Templates.
+ */
+public class KioskManagerImpl implements KioskManager {
+
+    private ServiceTracker daoServiceTracker;
+
+    public KioskManagerImpl(ServiceTracker daoServiceTracker) {
+        this.daoServiceTracker = daoServiceTracker;
     }
 
-    public Speaker get(Long id) {
-        return new Speaker(1L, "Matt", "Stine", "OSGi Head");
+    public List<Kiosk> findKiosksWhereAvailable(Speaker speaker) {
+        try {
+            return ((KioskDao) daoServiceTracker.waitForService(10000)).findKiosksWhereAvailable(speaker);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

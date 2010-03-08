@@ -22,22 +22,25 @@
 
 package com.mattstine.fluffbox.dao.internal;
 
-import com.mattstine.fluffbox.dao.SpeakerDao;
+import com.mattstine.fluffbox.dao.KioskDao;
+import com.mattstine.fluffbox.model.Kiosk;
 import com.mattstine.fluffbox.model.Speaker;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
-public class SpeakerDaoImpl implements SpeakerDao {
-    public List<Speaker> findAll() {
-        List<Speaker> speakers = new ArrayList<Speaker>();
-        speakers.add(new Speaker(1L, "Matt", "Stine", "OSGi Head"));
-        speakers.add(new Speaker(2L, "Neal", "Ford", "Thoughtworker"));
-        speakers.add(new Speaker(3L, "Ken", "Sipe", "All-around cool dude"));
-        return speakers;
-    }
-
-    public Speaker get(Long id) {
-        return new Speaker(1L, "Matt", "Stine", "OSGi Head");
+/**
+ * Created by IntelliJ IDEA.
+ * User: mstine
+ * Date: Mar 8, 2010
+ * Time: 11:52:53 AM
+ * To change this template use File | Settings | File Templates.
+ */
+public class KioskDaoImpl implements KioskDao {
+    public List<Kiosk> findKiosksWhereAvailable(Speaker speaker) {
+        List<Kiosk> kiosks = new ArrayList<Kiosk>();
+        kiosks.add(new Kiosk(1L, "Kroger (Outside)", "3095 Goodman Road E", "Southaven", "MS", "38672-8707"));
+        kiosks.add(new Kiosk(2L, "Walgreens (Outside)", "2996 Church Road E", "Southaven", "MS", "38671-9825"));
+        return kiosks;
     }
 }

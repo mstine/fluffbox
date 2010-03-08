@@ -22,24 +22,26 @@
 
 package com.mattstine.fluffbox.test;
 
-import com.mattstine.fluffbox.model.Speaker;
-import com.mattstine.fluffbox.service.SpeakerManager;
-import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Inject;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 import org.osgi.framework.BundleContext;
 import org.osgi.util.tracker.ServiceTracker;
+import com.mattstine.fluffbox.service.KioskManager;
+import com.mattstine.fluffbox.model.Kiosk;
+import com.mattstine.fluffbox.model.Speaker;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-import static org.ops4j.pax.exam.CoreOptions.*;
-
 @RunWith(JUnit4TestRunner.class)
-public class SpeakerManagerIntegrationTest {
+public class KioskManagerIntegrationTest {
 
     @Inject
     private BundleContext bundleContext;
@@ -51,36 +53,24 @@ public class SpeakerManagerIntegrationTest {
                 mavenBundle().groupId("com.mattstine.fluffbox").artifactId("model"),
                 mavenBundle().groupId("com.mattstine.fluffbox").artifactId("dao"),
                 mavenBundle().groupId("com.mattstine.fluffbox").artifactId("service")
-
         ));
     }
 
-    private SpeakerManager retrieveSpeakerManager() throws InterruptedException {
+    private KioskManager retrieveKioskManager() throws InterruptedException {
         ServiceTracker tracker = new ServiceTracker(bundleContext,
-                SpeakerManager.class.getName(), null);
+                KioskManager.class.getName(), null);
         tracker.open();
-        SpeakerManager speakerManager = (SpeakerManager) tracker.waitForService(5000);
+        KioskManager kioskManager = (KioskManager) tracker.waitForService(5000);
         tracker.close();
-        assertNotNull(speakerManager);
-        return speakerManager;
+        assertNotNull(kioskManager);
+        return kioskManager;
     }
 
     @Test
-    public void testBrowse() throws InterruptedException {
-        SpeakerManager speakerManager = retrieveSpeakerManager();
-        List<Speaker> speakers = speakerManager.browse();
-
-        assertFalse(speakers.isEmpty());
-        assertEquals("Stine", speakers.get(0).getLastName());
-
-        System.out.println(speakers);
+    public void testFindKiosksWhereSpeakersAvailable() throws InterruptedException {
+        KioskManager kioskManager = retrieveKioskManager();
+        List<Kiosk> kiosks = kioskManager.findKiosksWhereAvailable(new Speaker(1L, "Matt", "Stine", "OSGi Head"));
+        assertFalse(kiosks.isEmpty());
+        assertEquals("Kroger (Outside)", kiosks.get(0).getBusinessName());
     }
-
-    @Test
-    public void testGet() throws InterruptedException {
-        SpeakerManager speakerManager = retrieveSpeakerManager();
-        Speaker speaker = speakerManager.get(1L);
-        assertEquals("Stine", speaker.getLastName());
-    }
-
 }

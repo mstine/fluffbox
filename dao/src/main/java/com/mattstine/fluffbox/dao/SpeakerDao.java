@@ -29,4 +29,5 @@ import java.util.List;
 public interface SpeakerDao {
 
     List<Speaker> findAll();
+    Speaker get(Long id);
 }

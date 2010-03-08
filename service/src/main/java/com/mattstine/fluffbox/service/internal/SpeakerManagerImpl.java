@@ -44,4 +44,12 @@ public class SpeakerManagerImpl implements SpeakerManager {
             throw new RuntimeException(e);
         }
     }
+
+    public Speaker get(Long id) {
+        try {
+            return ((SpeakerDao) daoServiceTracker.waitForService(10000)).get(id);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

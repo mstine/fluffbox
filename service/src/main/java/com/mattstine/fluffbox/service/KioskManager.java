@@ -20,24 +20,20 @@
  * THE SOFTWARE.
  */
 
-package com.mattstine.fluffbox.dao.internal;
+package com.mattstine.fluffbox.service;
 
-import com.mattstine.fluffbox.dao.SpeakerDao;
+import com.mattstine.fluffbox.model.Kiosk;
 import com.mattstine.fluffbox.model.Speaker;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class SpeakerDaoImpl implements SpeakerDao {
-    public List<Speaker> findAll() {
-        List<Speaker> speakers = new ArrayList<Speaker>();
-        speakers.add(new Speaker(1L, "Matt", "Stine", "OSGi Head"));
-        speakers.add(new Speaker(2L, "Neal", "Ford", "Thoughtworker"));
-        speakers.add(new Speaker(3L, "Ken", "Sipe", "All-around cool dude"));
-        return speakers;
-    }
-
-    public Speaker get(Long id) {
-        return new Speaker(1L, "Matt", "Stine", "OSGi Head");
-    }
+/**
+ * Created by IntelliJ IDEA.
+ * User: mstine
+ * Date: Mar 8, 2010
+ * Time: 11:56:35 AM
+ * To change this template use File | Settings | File Templates.
+ */
+public interface KioskManager {
+    List<Kiosk> findKiosksWhereAvailable(Speaker speaker);
 }

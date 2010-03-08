@@ -29,4 +29,5 @@ import java.util.List;
 public interface SpeakerManager {
 
     List<Speaker> browse();
+    Speaker get(Long id);
 }

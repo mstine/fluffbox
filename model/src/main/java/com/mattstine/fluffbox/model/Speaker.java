@@ -28,12 +28,14 @@ public class Speaker {
     private String firstName;
     private String lastName;
     private String bio;
+    private String imagePath;
 
-    public Speaker(Long id, String firstName, String lastName, String bio) {
+    public Speaker(Long id, String firstName, String lastName, String bio, String imagePath) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.bio = bio;
+        this.imagePath = imagePath;
     }
 
     public Long getId() {
@@ -68,6 +70,14 @@ public class Speaker {
         this.bio = bio;
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -78,6 +88,7 @@ public class Speaker {
         if (bio != null ? !bio.equals(speaker.bio) : speaker.bio != null) return false;
         if (firstName != null ? !firstName.equals(speaker.firstName) : speaker.firstName != null) return false;
         if (id != null ? !id.equals(speaker.id) : speaker.id != null) return false;
+        if (imagePath != null ? !imagePath.equals(speaker.imagePath) : speaker.imagePath != null) return false;
         if (lastName != null ? !lastName.equals(speaker.lastName) : speaker.lastName != null) return false;
 
         return true;
@@ -89,6 +100,7 @@ public class Speaker {
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (bio != null ? bio.hashCode() : 0);
+        result = 31 * result + (imagePath != null ? imagePath.hashCode() : 0);
         return result;
     }
 
@@ -99,6 +111,7 @@ public class Speaker {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", bio='" + bio + '\'' +
+                ", imagePath='" + imagePath + '\'' +
                 '}';
     }
 }

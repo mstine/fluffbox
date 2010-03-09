@@ -31,13 +31,13 @@ import java.util.List;
 public class SpeakerDaoImpl implements SpeakerDao {
     public List<Speaker> findAll() {
         List<Speaker> speakers = new ArrayList<Speaker>();
-        speakers.add(new Speaker(1L, "Matt", "Stine", "OSGi Head"));
-        speakers.add(new Speaker(2L, "Neal", "Ford", "Thoughtworker"));
-        speakers.add(new Speaker(3L, "Ken", "Sipe", "All-around cool dude"));
+        speakers.add(new Speaker(1L, "Matt", "Stine", "OSGi Head", "/images/matt_stine.jpg"));
+        speakers.add(new Speaker(2L, "Neal", "Ford", "Thoughtworker", "/images/neal_ford.jpg"));
+        speakers.add(new Speaker(3L, "Ken", "Sipe", "All-around cool dude", "/images/ken_sipe.jpg"));
         return speakers;
     }
 
     public Speaker get(Long id) {
-        return new Speaker(1L, "Matt", "Stine", "OSGi Head");
+        return new Speaker(1L, "Matt", "Stine", "OSGi Head", "/images/matt_stine.jpg");
     }
 }

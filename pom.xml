@@ -92,4 +92,11 @@
     </plugins>
   </build>
 
+  <repositories>
+    <repository>
+      <id>spring-osgi</id>
+      <url>http://s3.amazonaws.com/maven.springframework.org/osgi</url>
+    </repository>
+  </repositories>
+
 </project>

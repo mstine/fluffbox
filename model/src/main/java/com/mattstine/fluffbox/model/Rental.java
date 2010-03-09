@@ -36,6 +36,12 @@ public class Rental {
     private Date dateReturned;
     private Kiosk kioskReturnedTo;
 
+    public Rental(Speaker speaker, Kiosk kioskRentedFrom, Customer customer) {
+        this.speaker = speaker;
+        this.kioskRentedFrom = kioskRentedFrom;
+        this.customer = customer;
+    }
+
     public Long getId() {
         return id;
     }

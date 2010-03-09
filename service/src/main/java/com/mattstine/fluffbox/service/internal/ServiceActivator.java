@@ -1,7 +1,9 @@
 package com.mattstine.fluffbox.service.internal;
 
+import com.mattstine.fluffbox.dao.RentalDao;
 import com.mattstine.fluffbox.dao.SpeakerDao;
 import com.mattstine.fluffbox.dao.KioskDao;
+import com.mattstine.fluffbox.service.RentalManager;
 import com.mattstine.fluffbox.service.SpeakerManager;
 import com.mattstine.fluffbox.service.KioskManager;
 import org.osgi.framework.BundleActivator;
@@ -19,6 +21,7 @@ public final class ServiceActivator
 
     private ServiceTracker speakerDaoServiceTracker;
     private ServiceTracker kioskDaoServiceTracker;
+    private ServiceTracker rentalDaoServiceTracker;
 
     /**
      * Called whenever the OSGi framework starts our bundle
@@ -32,6 +35,9 @@ public final class ServiceActivator
         kioskDaoServiceTracker = new ServiceTracker(bc, KioskDao.class.getName(), null);
         kioskDaoServiceTracker.open();
 
+        rentalDaoServiceTracker = new ServiceTracker(bc, RentalDao.class.getName(), null);
+        rentalDaoServiceTracker.open();
+
         System.out.println("STARTING com.mattstine.fluffbox.test");
 
         Dictionary props = new Properties();
@@ -42,7 +48,7 @@ public final class ServiceActivator
         // Register our example test implementation in the OSGi test registry
         bc.registerService(SpeakerManager.class.getName(), new SpeakerManagerImpl(speakerDaoServiceTracker), props);
         bc.registerService(KioskManager.class.getName(), new KioskManagerImpl(kioskDaoServiceTracker), props);
-
+        bc.registerService(RentalManager.class.getName(), new RentalManagerImpl(rentalDaoServiceTracker), props);
     }
 
     /**
@@ -53,6 +59,7 @@ public final class ServiceActivator
         System.out.println("STOPPING com.mattstine.fluffbox.test");
         speakerDaoServiceTracker.close();
         kioskDaoServiceTracker.close();
+        rentalDaoServiceTracker.close();
 
         // no need to unregister our test - the OSGi framework handles it for us
     }

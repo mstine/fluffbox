@@ -69,7 +69,7 @@ public class KioskManagerIntegrationTest {
     @Test
     public void testFindKiosksWhereSpeakersAvailable() throws InterruptedException {
         KioskManager kioskManager = retrieveKioskManager();
-        List<Kiosk> kiosks = kioskManager.findKiosksWhereAvailable(new Speaker(1L, "Matt", "Stine", "OSGi Head"));
+        List<Kiosk> kiosks = kioskManager.findKiosksWhereAvailable(new Speaker(1L, "Matt", "Stine", "OSGi Head", "/images/matt_stine.jpg"));
         assertFalse(kiosks.isEmpty());
         assertEquals("Kroger (Outside)", kiosks.get(0).getBusinessName());
     }

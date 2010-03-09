@@ -3,6 +3,7 @@ package com.mattstine.fluffbox.dao.internal;
 import java.util.Dictionary;
 import java.util.Properties;
 
+import com.mattstine.fluffbox.dao.RentalDao;
 import com.mattstine.fluffbox.dao.SpeakerDao;
 import com.mattstine.fluffbox.dao.KioskDao;
 import org.osgi.framework.BundleActivator;
@@ -34,6 +35,11 @@ public final class DaoActivator
 
         // Register our example test implementation in the OSGi test registry
         bc.registerService( KioskDao.class.getName(), new KioskDaoImpl(), props );
+
+        System.out.println( "REGISTER com.mattstine.fluffbox.dao.RentalDao" );
+
+        // Register our example test implementation in the OSGi test registry
+        bc.registerService( RentalDao.class.getName(), new RentalDaoImpl(), props );
     }
 
     /**

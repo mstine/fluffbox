@@ -22,7 +22,9 @@
 
 package com.mattstine.fluffbox.model;
 
-public class Speaker {
+import java.io.Serializable;
+
+public class Speaker implements Serializable {
 
     private Long id;
     private String firstName;

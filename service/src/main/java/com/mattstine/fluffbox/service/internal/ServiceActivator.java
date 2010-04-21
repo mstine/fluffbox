@@ -6,6 +6,7 @@ import com.mattstine.fluffbox.dao.KioskDao;
 import com.mattstine.fluffbox.service.RentalManager;
 import com.mattstine.fluffbox.service.SpeakerManager;
 import com.mattstine.fluffbox.service.KioskManager;
+import com.mattstine.fluffbox.messaging.MessageService;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.util.tracker.ServiceTracker;
@@ -22,6 +23,7 @@ public final class ServiceActivator
     private ServiceTracker speakerDaoServiceTracker;
     private ServiceTracker kioskDaoServiceTracker;
     private ServiceTracker rentalDaoServiceTracker;
+    private ServiceTracker messageServiceServiceTracker;
 
     /**
      * Called whenever the OSGi framework starts our bundle
@@ -38,6 +40,9 @@ public final class ServiceActivator
         rentalDaoServiceTracker = new ServiceTracker(bc, RentalDao.class.getName(), null);
         rentalDaoServiceTracker.open();
 
+        messageServiceServiceTracker = new ServiceTracker(bc, MessageService.class.getName(), null);
+        messageServiceServiceTracker.open();
+
         System.out.println("STARTING com.mattstine.fluffbox.test");
 
         Dictionary props = new Properties();
@@ -48,7 +53,7 @@ public final class ServiceActivator
         // Register our example test implementation in the OSGi test registry
         bc.registerService(SpeakerManager.class.getName(), new SpeakerManagerImpl(speakerDaoServiceTracker), props);
         bc.registerService(KioskManager.class.getName(), new KioskManagerImpl(kioskDaoServiceTracker), props);
-        bc.registerService(RentalManager.class.getName(), new RentalManagerImpl(rentalDaoServiceTracker), props);
+        bc.registerService(RentalManager.class.getName(), new RentalManagerImpl(rentalDaoServiceTracker, messageServiceServiceTracker), props);
     }
 
     /**

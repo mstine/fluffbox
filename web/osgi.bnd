@@ -10,6 +10,10 @@ Import-Package: *,\
   org.springframework.web.servlet.view,\
   org.springframework.web.servlet.mvc.annotation,\
   org.springframework.web.context,\
-  com.mattstine.fluffbox.model
+  com.mattstine.fluffbox.model,\
+  com.opensymphony.sitemesh.webapp,\
+  com.opensymphony.module.sitemesh,\
+  com.opensymphony.module.sitemesh.taglib,\
+  com.opensymphony.module.sitemesh.taglib.decorator
 Require-Bundle: org.springframework.osgi.jstl.osgi
 Web-ContextPath: fluffbox

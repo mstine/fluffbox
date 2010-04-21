@@ -29,4 +29,6 @@ import java.util.List;
 
 public interface KioskDao {
     List<Kiosk> findKiosksWhereAvailable(Speaker speaker);
+
+    Kiosk get(Long id);
 }

@@ -43,4 +43,8 @@ public class KioskDaoImpl implements KioskDao {
         kiosks.add(new Kiosk(2L, "Walgreens (Outside)", "2996 Church Road E", "Southaven", "MS", "38671-9825"));
         return kiosks;
     }
+
+    public Kiosk get(Long id) {
+        return new Kiosk(1L, "Kroger (Outside)", "3095 Goodman Road E", "Southaven", "MS", "38672-8707");
+    }
 }

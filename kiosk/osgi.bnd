@@ -1,5 +1,12 @@
 #-----------------------------------------------------------------
 # Use this file to add customized Bnd instructions for the bundle
 #-----------------------------------------------------------------
-
-Bundle-Activator: ${bundle.namespace}.internal.ExampleActivator
+#Bundle-Activator: com.mattstine.fluffbox.kiosk.internal.KioskGUIActivator
+Import-Package: *,\
+  org.apache.activemq.command,\
+  org.apache.activemq,\
+  org.springframework.jms.listener,\
+  org.springframework.jms.listener.adapter,\
+  org.springframework.beans.factory,\
+  org.springframework.beans.factory.annotation,\
+  org.springframework.stereotype

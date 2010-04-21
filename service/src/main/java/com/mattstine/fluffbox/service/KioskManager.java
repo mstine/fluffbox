@@ -36,4 +36,5 @@ import java.util.List;
  */
 public interface KioskManager {
     List<Kiosk> findKiosksWhereAvailable(Speaker speaker);
+    Kiosk get(Long id);
 }

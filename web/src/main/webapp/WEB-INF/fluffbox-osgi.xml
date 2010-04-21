@@ -8,5 +8,7 @@
                                  http://www.springframework.org/schema/osgi/spring-osgi.xsd">
 
     <reference id="speakerManager" interface="com.mattstine.fluffbox.service.SpeakerManager"/>
+    <reference id="kioskManager" interface="com.mattstine.fluffbox.service.KioskManager"/>
+    <reference id="rentalManager" interface="com.mattstine.fluffbox.service.RentalManager"/>
 
 </beans:beans>

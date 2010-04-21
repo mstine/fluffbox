@@ -53,6 +53,8 @@
     <module>messaging</module>
     <module>kiosk</module>
     <module>web</module>
+    <module>kiosk-web</module>
+    <module>messaging-inbound</module>
   </modules>
 
   <build>

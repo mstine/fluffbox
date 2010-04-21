@@ -22,7 +22,9 @@
 
 package com.mattstine.fluffbox.model;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
 
     Long id;
     String firstName;

@@ -7,4 +7,6 @@ import com.mattstine.fluffbox.model.Speaker;
 
 public interface RentalManager {
     Rental reserve(Speaker speaker, Kiosk kiosk, Customer customer);
+    void pickup(Rental rental);
+    void returnRental(Rental rental, Kiosk kiosk);
 }

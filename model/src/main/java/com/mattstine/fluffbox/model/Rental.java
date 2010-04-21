@@ -22,9 +22,10 @@
 
 package com.mattstine.fluffbox.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Rental {
+public class Rental implements Serializable {
 
     private Long id;
     private Speaker speaker;
@@ -151,5 +152,20 @@ public class Rental {
         result = 31 * result + (dateReturned != null ? dateReturned.hashCode() : 0);
         result = 31 * result + (kioskReturnedTo != null ? kioskReturnedTo.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Rental{" +
+                "id=" + id +
+                ", speaker=" + speaker +
+                ", kioskRentedFrom=" + kioskRentedFrom +
+                ", customer=" + customer +
+                ", dateReserved=" + dateReserved +
+                ", datePickedUp=" + datePickedUp +
+                ", dateDue=" + dateDue +
+                ", dateReturned=" + dateReturned +
+                ", kioskReturnedTo=" + kioskReturnedTo +
+                '}';
     }
 }

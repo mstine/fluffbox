@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+  http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.mattstine.fluffbox.kiosk"/>
+
+    <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory"
+          p:brokerURL="tcp://localhost:61616"/>
+
+    <bean id="rentalsQueue" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="queue.rentals"/>
+        <qualifier value="rentals"/>
+    </bean>
+
+    <bean id="pickupQueue" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="queue.pickup"/>
+        <qualifier value="pickup"/>
+    </bean>
+
+    <bean id="returnQueue" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="queue.return"/>
+        <qualifier value="return"/>        
+    </bean>
+
+    <jms:listener-container>
+        <jms:listener destination="queue.rentals" ref="incomingMessageListener" method="receiveRentalNotification"/>
+    </jms:listener-container>
+
+</beans>

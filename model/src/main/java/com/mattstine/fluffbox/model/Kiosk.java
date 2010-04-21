@@ -22,7 +22,9 @@
 
 package com.mattstine.fluffbox.model;
 
-public class Kiosk {
+import java.io.Serializable;
+
+public class Kiosk implements Serializable {
 
     private Long id;
     private String businessName;

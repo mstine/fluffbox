@@ -53,4 +53,12 @@ public class KioskManagerImpl implements KioskManager {
             throw new RuntimeException(e);
         }
     }
+
+    public Kiosk get(Long id) {
+        try {
+            return ((KioskDao) daoServiceTracker.waitForService(10000)).get(id);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
